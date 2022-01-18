@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <!-- <link rel="stylesheet" href="./inTelInput/intlTelInput.css"> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/css/intlTelInput.css"
+      integrity="sha512-gxWow8Mo6q6pLa1XH/CcH8JyiSDEtiwJV78E+D+QP0EVasFs8wKXq16G8CLD4CJ2SnonHr4Lm/yY2fSI2+cbmw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/intlTelInput.min.js"
+      integrity="sha512-L3moecKIMM1UtlzYZdiGlge2+bugLObEFLOFscaltlJ82y0my6mTUugiz6fQiSc5MaS7Ce0idFJzabEAl43XHg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Habbitto</title>
+  </head>
+  <body>
+    <div class="signup-container">
+      <div class="signup-wrapper">
+        <div class="left">
+            <div class="img-container">
+              <img src="./assets/images/signup-3d.png" alt="" />
+            </div>
+          <div class="wave-1">
+            <img src="./assets/images/WAVE-1.svg" alt="" />
+          </div>
+          <div class="wave-2">
+            <img src="./assets/images/WAVE-2.svg" alt="" />
+          </div>
+        </div>
+        <div class="right">
+          <h2 class="heading">Sign Up</h2>
+          <form class="signup-form">
+            <label for="name">Name</label>
+            <input required type="text" name="name" class="name-input" />
+            <span class="warning name-warning">Too short</span>
+            <label for="email">Email</label>
+            <input required type="email" name="email" class="email-input" />
+            <span class="warning email-warning">Invalid email</span>
+            <label for="password">Password</label>
+            <input
+              required
+              type="password"
+              name="password"
+              class="password-input"
+            />
+            <span class="warning password-warning">
+              Password should be of 6 characters or more
+            </span>
+            <label for="mobileNumber">
+              Mobile Number
+              <span>(if you wish to receive sms notification)</span>
+            </label>
+            <input type="tel" name="mobileNumber" class="mobile-input" />
+            <span class="warning mobile-warning">Invalid mobile number</span>
+
+            <button class="signup-btn" type="submit">Sign up</button>
+
+            <div class="login-link">
+              <span>Already have an account?</span>
+              <a href="/login">Login</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- <script src="./inTelInput/intlTelInput.js"></script> -->
+    <script>
+      var input = document.querySelector(".mobile-input");
+      let iti = window.intlTelInput(input, {
+        initialCountry: "IN",
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.js",
+      });
+    </script>
+
+    <script>
+        const nameWarning = document.querySelector(".name-warning");
+        const passwordWarning = document.querySelector(".password-warning");
+        const mobileWarning = document.querySelector(".mobile-warning");
+      const nameInput = document.querySelector(".name-input");
+      const passwordInput = document.querySelector(".password-input");
+      const mobileInput = document.querySelector(".mobile-input");
+      //validate the input and show the warnings
+      function validateInputs({ name, password, email, mobileNumber }) {
+          let isFormValid=true
+          //validate name and show warnings according to them
+        if (name.length < 4) {
+          nameWarning.classList.add("show");
+          nameInput.classList.add("show-red-border");
+          isFormValid= false;
+        }
+        else{
+            nameWarning.classList.remove("show");
+            nameInput.classList.remove("show-red-border");
+
+        }
+        if (password.length < 6) {
+          passwordWarning.classList.add("show");
+          passwordInput.classList.add("show-red-border");
+          isFormValid= false;
+        }
+        else{
+            passwordWarning.classList.remove("show");
+
+            passwordInput.classList.remove("show-red-border");
+        }
+        if (!iti.isValidNumber()) {
+          mobileWarning.classList.add("show");
+          mobileInput.classList.add("show-red-border");
+          isFormValid= false;
+        }
+        else{
+            mobileWarning.classList.remove("show");
+
+            mobileInput.classList.remove("show-red-border");
+        } 
+        return isFormValid
+      }
+      //send the request to server to create the user
+      async function signUpUser(data) {
+        let response=await fetch("http://localhost:5000/signup",{
+          method:"POST",
+          headers:{
+            'Content-type':"application/json"
+          },
+          body:JSON.stringify(data)
+        })
+        res=await response.json()
+        console.log(res)
+      }
+      let signupForm = document.querySelector(".signup-form");
+      signupForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const userData = {
+          name: e.target.name.value.trim(),
+          password: e.target.password.value,
+          email: e.target.email.value.trim(),
+          mobileNumber: e.target.mobileNumber.value,
+        };
+        if (validateInputs(userData)) {
+          //send the data to server
+
+          signUpUser(userData);
+        }
+      });
+    </script>
+  </body>
+</html>

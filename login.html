@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <title>Habbitto</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-wrapper">
+        <div class="left">
+          <div class="wave-1">
+            <img src="./assets/images/WAVE-1.svg" alt="" />
+          </div>
+          <div class="wave-2">
+            <img src="./assets/images/WAVE-2.svg" alt="" />
+          </div>
+          <div class="img-container">
+            <img src="./assets/images/login-3d.png" alt="" />
+          </div>
+        </div>
+        <div class="right">
+          <h2 class="heading">Sign In</h2>
+          <form class="login-form">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="email-input" />
+            <label for="password">Password</label>
+            <input type="password" name="password" class="password-input" />
+            <div class="forgot-password">
+              <a href="">Forgot Password?</a>
+            </div>
+
+            <button class="login-btn" type="submit">Login</button>
+
+            <div class="signup-link">
+              <span>Don't have an account?</span>
+              <a href="/signup">Create your account</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      const loginForm = document.querySelector(".login-form");
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const userCredentials = {
+          username: e.target.username.value,
+          password: e.target.password.value,
+        };
+        console.log(userCredentials);
+        fetch("http://localhost:5000/login", {
+          method: "POST",
+          credentials: "include",headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+          body: JSON.stringify(userCredentials),
+        }).then((res) => {
+          if (res.status == 200) {
+            res.json().then((response) => {
+              console.log(response);
+             window.location.href="/front-end/index.html"
+              
+            });
+          } else {
+            alert("Invalid credentials");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

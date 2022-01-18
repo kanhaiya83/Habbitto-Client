@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <!-- lato font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./assets/smooth-scrollbar.js"></script>
+    <title>Habbitto</title>
+  </head>
+  <body>
+    <!-- <script>
+      function populateData(data){
+        console.log("Populating data!!")
+      }
+      fetch("http://localhost:5000",{credentials:"include",headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }}).then((res) => {
+        console.log(res)
+        if (res.status == 200) {
+            document.querySelector(".main-wrapper").style.display="block"
+            document.querySelector(".loader").style.display="none"
+          res.json().then((hobbyData) => {
+              populateData(hobbyData)
+          });
+        }
+        else{
+            //  window.location.href="/front-end/login.html"
+        }
+      });
+    </script> -->
+    <div class="loader">
+      <span>Loading....</span>
+    </div>
+    <div class="main-wrapper" style="display:block">
+      <div class="navbar">
+        <div class="navitem">
+          <img src="./assets/images/home-icon.svg" alt="" />
+        </div>
+        <div class="navitem">
+          <img src="./assets/images/add-icon.svg" alt="" />
+        </div>
+        <div class="navitem">
+          <img src="./assets/images/profile-icon.svg" alt="" />
+        </div>
+        <div class="navitem">
+          <img src="./assets/images/setting-icon.svg" alt="" />
+        </div>
+      </div>
+      <div class="container">
+        <div class="header">
+          <div class="heading">
+            <span>hi,</span>
+            <h1>Kanhaiya</h1>
+          </div>
+          <button class="logout-btn">
+            <span>Logout</span>
+            <svg
+              viewBox="0 0 15 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 2.66C0 2.08713 0.215503 1.53773 0.5991 1.13265C0.982697 0.727571 1.50297 0.5 2.04545 0.5H10.2273C10.7698 0.5 11.29 0.727571 11.6736 1.13265C12.0572 1.53773 12.2727 2.08713 12.2727 2.66V8.72744C11.9412 8.60391 11.5985 8.51704 11.25 8.46824V2.66C11.25 2.37357 11.1422 2.09886 10.9504 1.89632C10.7587 1.69379 10.4985 1.58 10.2273 1.58H2.04545C1.77421 1.58 1.51408 1.69379 1.32228 1.89632C1.13048 2.09886 1.02273 2.37357 1.02273 2.66V15.62C1.02273 15.9064 1.13048 16.1811 1.32228 16.3837C1.51408 16.5862 1.77421 16.7 2.04545 16.7H6.24205C6.48 17.0982 6.76636 17.461 7.09159 17.78H2.04545C1.50297 17.78 0.982697 17.5524 0.5991 17.1474C0.215503 16.7423 0 16.1929 0 15.62V2.66ZM3.06818 9.86C3.33943 9.86 3.59956 9.74621 3.79136 9.54368C3.98316 9.34114 4.09091 9.06643 4.09091 8.78C4.09091 8.49357 3.98316 8.21886 3.79136 8.01632C3.59956 7.81379 3.33943 7.7 3.06818 7.7C2.79694 7.7 2.5368 7.81379 2.345 8.01632C2.15321 8.21886 2.04545 8.49357 2.04545 8.78C2.04545 9.06643 2.15321 9.34114 2.345 9.54368C2.5368 9.74621 2.79694 9.86 3.06818 9.86ZM15 13.82C15 15.0612 14.5331 16.2516 13.702 17.1293C12.8708 18.0069 11.7436 18.5 10.5682 18.5C9.39279 18.5 8.26554 18.0069 7.43441 17.1293C6.60329 16.2516 6.13636 15.0612 6.13636 13.82C6.13636 12.5788 6.60329 11.3884 7.43441 10.5107C8.26554 9.63307 9.39279 9.14 10.5682 9.14C11.7436 9.14 12.8708 9.63307 13.702 10.5107C14.5331 11.3884 15 12.5788 15 13.82ZM7.84091 13.46C7.75049 13.46 7.66378 13.4979 7.59985 13.5654C7.53592 13.633 7.5 13.7245 7.5 13.82C7.5 13.9155 7.53592 14.007 7.59985 14.0746C7.66378 14.1421 7.75049 14.18 7.84091 14.18H12.4725L11.0086 15.7251C10.9446 15.7927 10.9087 15.8844 10.9087 15.98C10.9087 16.0756 10.9446 16.1673 11.0086 16.2349C11.0726 16.3025 11.1595 16.3405 11.25 16.3405C11.3405 16.3405 11.4274 16.3025 11.4914 16.2349L13.5368 14.0749C13.6002 14.0078 13.636 13.917 13.6364 13.8222V13.8178C13.6359 13.7233 13.6001 13.6327 13.5368 13.5658L11.4914 11.4058C11.4274 11.3382 11.3407 11.3002 11.2502 11.3002C11.1598 11.3001 11.073 11.338 11.009 11.4055C10.945 11.473 10.909 11.5646 10.9089 11.6601C10.9088 11.7556 10.9447 11.8473 11.0086 11.9149L12.4725 13.46H7.84091Z"
+                fill="#484848"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="content-wrapper">
+          <div class="habits-container">
+            <div class="section-header">
+              <span class="heading">Today's Habits</span>
+              <button class="add-btn">
+                <span>Add</span>
+                <div class="icon">
+                  <img src="./assets/images/add-icon.svg" alt="" />
+                </div>
+              </button>
+            </div>
+            <div class="habits-list">
+              <div class="habit completed">
+                <div class="icon">
+                  <img src="./assets/images/checked.svg" alt="" />
+                </div>
+                <div class="wrapper">
+                  <div class="title"><span>Learn two new words.</span></div>
+                  <div class="repeat-info">
+                    <img src="./assets/images/repeat.svg" alt="" />
+                    <span>Repeat Everyday</span>
+                  </div>
+                </div>
+                <div class="time">
+                  <span>05:30 AM</span>
+                </div>
+              </div>
+              <div class="habit">
+                <div class="icon">
+                  <img src="./assets/images/waiting.svg" alt="" />
+                </div>
+                <div class="wrapper">
+                  <div class="title"><span>Learn two new words.</span></div>
+                  <div class="repeat-info">
+                    <img src="./assets/images/repeat.svg" alt="" />
+                    <span>Repeat Everyday</span>
+                  </div>
+                </div>
+                <div class="time">
+                  <span>05:30 AM</span>
+                </div>
+              </div>
+              <div class="habit">
+                <div class="icon">
+                  <img src="./assets/images/waiting.svg" alt="" />
+                </div>
+                <div class="wrapper">
+                  <div class="title"><span>Learn two new words.</span></div>
+                  <div class="repeat-info">
+                    <img src="./assets/images/repeat.svg" alt="" />
+                    <span>Repeat Everyday</span>
+                  </div>
+                </div>
+                <div class="time">
+                  <span>05:30 AM</span>
+                </div>
+              </div>
+              <div class="habit">
+                <div class="icon">
+                  <img src="./assets/images/waiting.svg" alt="" />
+                </div>
+                <div class="wrapper">
+                  <div class="title"><span>Learn two new words.</span></div>
+                  <div class="repeat-info">
+                    <img src="./assets/images/repeat.svg" alt="" />
+                    <span>Repeat Everyday</span>
+                  </div>
+                </div>
+                <div class="time">
+                  <span>05:30 AM</span>
+                </div>
+              </div>
+              <div class="habit">
+                <div class="icon">
+                  <img src="./assets/images/waiting.svg" alt="" />
+                </div>
+                <div class="wrapper">
+                  <div class="title"><span>Learn two new words.</span></div>
+                  <div class="repeat-info">
+                    <img src="./assets/images/repeat.svg" alt="" />
+                    <span>Repeat Everyday</span>
+                  </div>
+                </div>
+                <div class="time">
+                  <span>05:30 AM</span>
+                </div>
+              </div>
+              <div class="habit">
+                <div class="icon">
+                  <img src="./assets/images/waiting.svg" alt="" />
+                </div>
+                <div class="wrapper">
+                  <div class="title"><span>Learn two new words.</span></div>
+                  <div class="repeat-info">
+                    <img src="./assets/images/repeat.svg" alt="" />
+                    <span>Repeat Everyday</span>
+                  </div>
+                </div>
+                <div class="time">
+                  <span>05:30 AM</span>
+                </div>
+              </div>
+              <div class="habit">
+                <div class="icon">
+                  <img src="./assets/images/waiting.svg" alt="" />
+                </div>
+                <div class="wrapper">
+                  <div class="title"><span>Learn two new words.</span></div>
+                  <div class="repeat-info">
+                    <img src="./assets/images/repeat.svg" alt="" />
+                    <span>Repeat Everyday</span>
+                  </div>
+                </div>
+                <div class="time">
+                  <span>05:30 AM</span>
+                </div>
+              </div>
+              <div class="habit">
+                <div class="icon">
+                  <img src="./assets/images/waiting.svg" alt="" />
+                </div>
+                <div class="wrapper">
+                  <div class="title"><span>fLearn two new words.</span></div>
+                  <div class="repeat-info">
+                    <img src="./assets/images/repeat.svg" alt="" />
+                    <span>Repeat Everyday</span>
+                  </div>
+                </div>
+                <div class="time">
+                  <span>05:30 AM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="illustration-container">
+            <img src="./assets/images/illustration.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <script src="./assets/index.js"></script> -->
+    <script></script>
+  </body>
+</html>
