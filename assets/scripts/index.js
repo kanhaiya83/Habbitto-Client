@@ -9,10 +9,7 @@ fetch(serverUrl + "/habits", {
   },
 }).then((res) => {
   if (res.status == 200) {
-    if (window.location.pathname != "/index.html"){
-      window.location.href = "/index.html";
-
-    }
+    
       res.json().then((hobbyData) => {
         populateData(hobbyData.habits);
 
