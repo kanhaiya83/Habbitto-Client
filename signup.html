@@ -27,11 +27,14 @@
     <title>Habbitto</title>
   </head>
   <body>
+    <div class="loader-container">
+      <div class="loader"></div>
+    </div>
     <div class="signup-container">
       <div class="signup-wrapper">
         <div class="left">
             <div class="img-container">
-              <img src="./assets/images/signup-3d.png" alt="" />
+              <img src="http://localhost:5000/images/login" alt="" />
             </div>
           <div class="wave-1">
             <img src="./assets/images/WAVE-1.svg" alt="" />
@@ -43,12 +46,8 @@
         <div class="right">
           <h2 class="heading">Sign Up</h2>
           <form class="signup-form">
-            <label for="name">Name</label>
-            <input required type="text" name="name" class="name-input" />
-            <span class="warning name-warning">Too short</span>
-            <label for="email">Email</label>
-            <input required type="email" name="email" class="email-input" />
-            <span class="warning email-warning">Invalid email</span>
+            <label for="username">Username</label>
+            <input required type="text" name="username" class="username-input" />
             <label for="password">Password</label>
             <input
               required
@@ -85,77 +84,29 @@
           "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.js",
       });
     </script>
-
-    <script>
-        const nameWarning = document.querySelector(".name-warning");
-        const passwordWarning = document.querySelector(".password-warning");
-        const mobileWarning = document.querySelector(".mobile-warning");
-      const nameInput = document.querySelector(".name-input");
-      const passwordInput = document.querySelector(".password-input");
-      const mobileInput = document.querySelector(".mobile-input");
-      //validate the input and show the warnings
-      function validateInputs({ name, password, email, mobileNumber }) {
-          let isFormValid=true
-          //validate name and show warnings according to them
-        if (name.length < 4) {
-          nameWarning.classList.add("show");
-          nameInput.classList.add("show-red-border");
-          isFormValid= false;
-        }
-        else{
-            nameWarning.classList.remove("show");
-            nameInput.classList.remove("show-red-border");
-
-        }
-        if (password.length < 6) {
-          passwordWarning.classList.add("show");
-          passwordInput.classList.add("show-red-border");
-          isFormValid= false;
-        }
-        else{
-            passwordWarning.classList.remove("show");
-
-            passwordInput.classList.remove("show-red-border");
-        }
-        if (!iti.isValidNumber()) {
-          mobileWarning.classList.add("show");
-          mobileInput.classList.add("show-red-border");
-          isFormValid= false;
-        }
-        else{
-            mobileWarning.classList.remove("show");
-
-            mobileInput.classList.remove("show-red-border");
-        } 
-        return isFormValid
+ <script>
+  if(localStorage.getItem("auth-token")!=""){
+serverUrl = "https://habbitto-server.herokuapp.com" || "http://localhost:5000" ;
+      
+      fetch(serverUrl+"/verifyuser",{
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token"),
       }
-      //send the request to server to create the user
-      async function signUpUser(data) {
-        let response=await fetch("http://localhost:5000/signup",{
-          method:"POST",
-          headers:{
-            'Content-type':"application/json"
-          },
-          body:JSON.stringify(data)
-        })
-        res=await response.json()
-        console.log(res)
-      }
-      let signupForm = document.querySelector(".signup-form");
-      signupForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const userData = {
-          name: e.target.name.value.trim(),
-          password: e.target.password.value,
-          email: e.target.email.value.trim(),
-          mobileNumber: e.target.mobileNumber.value,
-        };
-        if (validateInputs(userData)) {
-          //send the data to server
-
-          signUpUser(userData);
+      }).then((res)=>{
+        if(res.status==200){
+          window.location.href="index.html"
         }
-      });
-    </script>
-  </body>
+        else{
+          document.querySelector(".loader-container").style.display="none"
+          document.querySelector(".signup-container").style.display="block"
+        }
+      })
+  }
+        else{
+          document.querySelector(".loader-container").style.display="none"
+          document.querySelector(".signup-container").style.display="block"
+        }
+</script>
 </html>

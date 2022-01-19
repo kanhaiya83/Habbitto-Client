@@ -11,9 +11,16 @@
     />
     <link rel="stylesheet" href="./assets/styles/style.css" />
     <title>Habbitto</title>
+    
   </head>
+
   <body>
-    <div class="login-container">
+    <div class="loader-container">
+      
+    <div class="loader">
+    </div>
+    </div>
+    <div class="login-container" style="display: none;">
       <div class="login-wrapper">
         <div class="left">
           <div class="wave-1">
@@ -23,7 +30,7 @@
             <img src="./assets/images/WAVE-2.svg" alt="" />
           </div>
           <div class="img-container">
-            <img src="./assets/images/login-3d.png" alt="" />
+            <img src="https://habbitto-server.herokuapp.com/images/login" alt="" />
           </div>
         </div>
         <div class="right">
@@ -47,34 +54,33 @@
         </div>
       </div>
     </div>
-    <script>
-      const loginForm = document.querySelector(".login-form");
-      loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const userCredentials = {
-          username: e.target.username.value,
-          password: e.target.password.value,
-        };
-        console.log(userCredentials);
-        fetch("http://localhost:5000/login", {
-          method: "POST",
-          credentials: "include",headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-          body: JSON.stringify(userCredentials),
-        }).then((res) => {
-          if (res.status == 200) {
-            res.json().then((response) => {
-              console.log(response);
-             window.location.href="/front-end/index.html"
-              
-            });
-          } else {
-            alert("Invalid credentials");
+
+    
+  <script>
+serverUrl = "https://habbitto-server.herokuapp.com" || "http://localhost:5000" ;
+
+    if(localStorage.getItem("auth-token")!=""){
+        
+        fetch(serverUrl+"/verifyuser",{
+          headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("auth-token"),
+        }
+        }).then((res)=>{
+          if(res.status==200){
+            window.location.href="index.html"
           }
-        });
-      });
-    </script>
+          else{
+            document.querySelector(".loader-container").style.display="none"
+            document.querySelector(".login-container").style.display="block"
+          }
+        })
+    }
+          else{
+            document.querySelector(".loader-container").style.display="none"
+            document.querySelector(".login-container").style.display="block"
+          }
+  </script>
   </body>
 </html>

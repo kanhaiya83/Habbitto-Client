@@ -17,35 +17,15 @@
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <script src="./assets/smooth-scrollbar.js"></script>
     <title>Habbitto</title>
   </head>
   <body>
-    <!-- <script>
-      function populateData(data){
-        console.log("Populating data!!")
-      }
-      fetch("http://localhost:5000",{credentials:"include",headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }}).then((res) => {
-        console.log(res)
-        if (res.status == 200) {
-            document.querySelector(".main-wrapper").style.display="block"
-            document.querySelector(".loader").style.display="none"
-          res.json().then((hobbyData) => {
-              populateData(hobbyData)
-          });
-        }
-        else{
-            //  window.location.href="/front-end/login.html"
-        }
-      });
-    </script> -->
+  
+   <div class="loader-container">
     <div class="loader">
-      <span>Loading....</span>
     </div>
-    <div class="main-wrapper" style="display:block">
+   </div>
+    <div class="main-wrapper" style="display: none;">
       <div class="navbar">
         <div class="navitem">
           <img src="./assets/images/home-icon.svg" alt="" />
@@ -92,7 +72,7 @@
               </button>
             </div>
             <div class="habits-list">
-              <div class="habit completed">
+              <!-- <div class="habit completed">
                 <div class="icon">
                   <img src="./assets/images/checked.svg" alt="" />
                 </div>
@@ -121,106 +101,16 @@
                 <div class="time">
                   <span>05:30 AM</span>
                 </div>
-              </div>
-              <div class="habit">
-                <div class="icon">
-                  <img src="./assets/images/waiting.svg" alt="" />
-                </div>
-                <div class="wrapper">
-                  <div class="title"><span>Learn two new words.</span></div>
-                  <div class="repeat-info">
-                    <img src="./assets/images/repeat.svg" alt="" />
-                    <span>Repeat Everyday</span>
-                  </div>
-                </div>
-                <div class="time">
-                  <span>05:30 AM</span>
-                </div>
-              </div>
-              <div class="habit">
-                <div class="icon">
-                  <img src="./assets/images/waiting.svg" alt="" />
-                </div>
-                <div class="wrapper">
-                  <div class="title"><span>Learn two new words.</span></div>
-                  <div class="repeat-info">
-                    <img src="./assets/images/repeat.svg" alt="" />
-                    <span>Repeat Everyday</span>
-                  </div>
-                </div>
-                <div class="time">
-                  <span>05:30 AM</span>
-                </div>
-              </div>
-              <div class="habit">
-                <div class="icon">
-                  <img src="./assets/images/waiting.svg" alt="" />
-                </div>
-                <div class="wrapper">
-                  <div class="title"><span>Learn two new words.</span></div>
-                  <div class="repeat-info">
-                    <img src="./assets/images/repeat.svg" alt="" />
-                    <span>Repeat Everyday</span>
-                  </div>
-                </div>
-                <div class="time">
-                  <span>05:30 AM</span>
-                </div>
-              </div>
-              <div class="habit">
-                <div class="icon">
-                  <img src="./assets/images/waiting.svg" alt="" />
-                </div>
-                <div class="wrapper">
-                  <div class="title"><span>Learn two new words.</span></div>
-                  <div class="repeat-info">
-                    <img src="./assets/images/repeat.svg" alt="" />
-                    <span>Repeat Everyday</span>
-                  </div>
-                </div>
-                <div class="time">
-                  <span>05:30 AM</span>
-                </div>
-              </div>
-              <div class="habit">
-                <div class="icon">
-                  <img src="./assets/images/waiting.svg" alt="" />
-                </div>
-                <div class="wrapper">
-                  <div class="title"><span>Learn two new words.</span></div>
-                  <div class="repeat-info">
-                    <img src="./assets/images/repeat.svg" alt="" />
-                    <span>Repeat Everyday</span>
-                  </div>
-                </div>
-                <div class="time">
-                  <span>05:30 AM</span>
-                </div>
-              </div>
-              <div class="habit">
-                <div class="icon">
-                  <img src="./assets/images/waiting.svg" alt="" />
-                </div>
-                <div class="wrapper">
-                  <div class="title"><span>fLearn two new words.</span></div>
-                  <div class="repeat-info">
-                    <img src="./assets/images/repeat.svg" alt="" />
-                    <span>Repeat Everyday</span>
-                  </div>
-                </div>
-                <div class="time">
-                  <span>05:30 AM</span>
-                </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="illustration-container">
-            <img src="./assets/images/illustration.png" alt="" />
+            <img src="https://habbitto-server.herokuapp.com/images/home" alt="" />
           </div>
         </div>
       </div>
     </div>
-    <!-- <script src="./assets/index.js"></script> -->
+    <script src="./assets/scripts/index.js"></script>
     <script></script>
   </body>
 </html>
