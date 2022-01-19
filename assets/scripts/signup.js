@@ -1,3 +1,5 @@
+serverUrl = "https://habbitto-server.herokuapp.com" || "http://localhost:5000" ;
+
 const signupForm = document.querySelector(".signup-form");
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -7,7 +9,7 @@ signupForm.addEventListener("submit", (e) => {
   };
   console.log(userData);
   
-  fetch("http://localhost:5000/signup", {
+  fetch(serverUrl+"/signup", {
     method: "POST",
     headers: {
       Accept: "application/json",
