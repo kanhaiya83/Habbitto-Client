@@ -1,4 +1,6 @@
-serverUrl = "https://habbitto-server.herokuapp.com" || "http://localhost:5000" ;
+serverUrl= "http://localhost:5000" ;
+serverUrl = "https://habbitto-server.herokuapp.com" 
+
 
 //#region login page
 const loginForm = document.querySelector(".login-form");

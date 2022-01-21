@@ -34,7 +34,7 @@
       <div class="signup-wrapper">
         <div class="left">
             <div class="img-container">
-              <img src="http://localhost:5000/images/login" alt="" />
+              <img src="http://localhost:5000/images/signup" alt="" />
             </div>
           <div class="wave-1">
             <img src="./assets/images/WAVE-1.svg" alt="" />
@@ -69,7 +69,7 @@
 
             <div class="login-link">
               <span>Already have an account?</span>
-              <a href="/login">Login</a>
+              <a href="/login.html">Login</a>
             </div>
           </form>
         </div>
@@ -84,10 +84,11 @@
           "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.js",
       });
     </script>
- <script>
+ <script>serverUrl= "http://localhost:5000" ;
+  serverUrl = "https://habbitto-server.herokuapp.com" 
+
   if(localStorage.getItem("auth-token")!=""){
-serverUrl = "https://habbitto-server.herokuapp.com" || "http://localhost:5000" ;
-      
+    
       fetch(serverUrl+"/verifyuser",{
         headers: {
         Accept: "application/json",

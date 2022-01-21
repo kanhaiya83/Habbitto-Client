@@ -1,27 +1,29 @@
-serverUrl = "https://habbitto-server.herokuapp.com" || "http://localhost:5000" ;
+serverUrl= "http://localhost:5000" ;
+serverUrl = "https://habbitto-server.herokuapp.com" 
+//#region initial auth check
 
-
-fetch(serverUrl + "/habits", {
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-    "auth-token": localStorage.getItem("auth-token"),
-  },
-}).then((res) => {
-  if (res.status == 200) {
-    
+if (localStorage.getItem("auth-token") != "") {
+  fetch(serverUrl + "/habits", {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "auth-token": localStorage.getItem("auth-token"),
+    },
+  }).then((res) => {
+    if (res.status == 200) {
       res.json().then((hobbyData) => {
         populateData(hobbyData.habits);
 
         document.querySelector(".main-wrapper").style.display = "block";
-        document.querySelector(".loader-container").style.display = "none";
+        showLoader(false);
       });
-  } else {
+    } else {
       window.location.href = "/login.html";
-    
-  }
-});
-
+    }
+  });
+} else {
+  window.location.href = "/login.html";
+}
 
 function populateData(habitsArr) {
   habitsArr.forEach((habitObj) => {
@@ -50,10 +52,179 @@ function populateData(habitsArr) {
   });
 }
 
-  
+//#endregion
 
 //logout functionality
 document.querySelector(".logout-btn").addEventListener("click", () => {
   localStorage.setItem("auth-token", "");
   window.location.href = "/login.html";
 });
+
+//add habit modal
+const addHabitBtn = document.querySelector(".add-btn");
+const addModalBackdrop = document.querySelector(".add-modal-backdrop");
+const addModal = document.querySelector(".add-modal");
+
+const closeModalBtn = document.querySelector(
+  ".add-modal button.close-modal-btn"
+);
+const cancelModalBtn = document.querySelector(".add-modal button.cancel-btn");
+
+function openModal() {
+  addModalBackdrop.classList.add("show");
+  addModal.classList.add("show");
+}
+function resetAddHabitForm(){
+  //title
+  addHabitForm.reset()
+  //days picker
+  daysPickerBtns.forEach((e,i)=>{
+    if(i<5){
+      e.classList.add("checked")
+    }
+    else{
+      e.classList.remove("checked")
+    }
+  })
+  //set reminder checkbox
+  customCheckbox.classList.remove("checked")
+  //reminder time input
+  document.querySelector(".reminder-time-input").value="12:00"
+  //hide reminder time input
+  document
+    .querySelector(".reminder-time-input-wrapper")
+    .classList.remove("show");
+}
+function hideModal() {
+  addModalBackdrop.classList.remove("show");
+  addModal.classList.remove("show");
+}
+addHabitBtn.addEventListener("click", () => {
+  openModal();
+});
+
+addModalBackdrop.addEventListener("click", () => {
+  hideModal();
+});
+closeModalBtn.addEventListener("click", () => {
+  hideModal();
+});
+cancelModalBtn.addEventListener("click", () => {
+  hideModal();
+});
+
+//custom checkbox in add add habit modal
+const customCheckbox = document.querySelector(".custom-checkbox");
+customCheckbox.addEventListener("click", () => {
+  customCheckbox.classList.toggle("checked");
+  document
+    .querySelector(".reminder-time-input-wrapper")
+    .classList.toggle("show");
+});
+//days picker
+const daysPickerBtns = document.querySelectorAll(".days-picker button");
+daysPickerBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    btn.classList.toggle("checked");
+  });
+});
+//add habit form handling
+
+const addHabitForm = document.querySelector(".add-habit-form");
+
+addHabitForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  showLoader(true)  //hide loader on response and data population
+  hideModal()
+  const data = getAddFormData(e);
+  sendAddHabitData(data)
+});
+
+function getAddFormData(e) {
+  let data = {
+    title: "",
+    repeatDays: [0, 0, 0, 0, 0, 0, 0],
+    isReminderSet: false,
+    reminderTime: "",
+    isCompleted: false,
+  };
+  //title
+  data.title = e.target["title-input"].value;
+  //days on which to repeat stored in array(1 or 0) from monday to sunday
+  daysPickerBtns.forEach((btn, i) => {
+    if (btn.classList.contains("checked")) {
+      data.repeatDays[i] = 1;
+    }
+  });
+  //is reminder set
+  if (customCheckbox.classList.contains("checked")) {
+    data.setReminder = true;
+    //reminder time
+    inputTime = document.querySelector("input.reminder-time-input").value.split(":");
+    let currDate = new Date();
+    currDate.setHours(inputTime[0]);
+    currDate.setMinutes(inputTime[1]);
+    currDate.setSeconds("0");
+    data.reminderTime = currDate.getTime();
+  }
+  return data;
+}
+
+
+function showValidationWarning(type){
+  let isValid=true
+
+  const titleWarning= document.querySelector("title-warning")
+  const passwordWarning= document.querySelector("title-warning")
+  const reminderTimeWarning= document.querySelector("title-warning")
+
+  titleWarning.classList.remove("show")
+  passwordWarning.classList.remove("show")
+  reminderTimeWarning.classList.remove("show")
+
+  if(type==="title"){
+   titleWarning.classList.add("show")
+   isValid=false
+  }
+  if(type==="password"){
+passwordWarning.classList.add("show")
+isValid=false
+}
+  if(type==="reminderTime"){
+    reminderTimeWarning.classList.add("show")
+    isValid=false
+  }
+  return isValid
+}
+
+function sendAddHabitData(data) {
+  fetch(serverUrl + "/addhabit", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "auth-token": localStorage.getItem("auth-token"),
+    },
+    body: JSON.stringify(data),
+  }).then((r) => {
+    
+     return r.json();
+    })
+    .then((data) => {
+      populateData([data])
+      showLoader(false)
+    });
+}
+
+
+//utilities
+function showLoader(show=true){
+if(show){
+  document.querySelector(".loader-container").classList.add("show")
+
+}
+else{
+  document.querySelector(".loader-container").classList.remove("show")
+
+}
+}

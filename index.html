@@ -16,15 +16,61 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
       rel="stylesheet"
-    />
+    /><link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
     <title>Habbitto</title>
   </head>
   <body>
   
-   <div class="loader-container">
+   <div class="loader-container show">
     <div class="loader">
     </div>
    </div>
+   <div class="add-modal-backdrop">
+    </div>
+    <div class="add-modal">
+      <button class="close-modal-btn"><img src="./assets/images/cross.svg" alt=""></button>
+      <div class="add-modal-content">
+        <h3 class="heading">Add a Habit</h3>
+        <form class="add-habit-form">
+          <div class="title-input-wrapper">
+            
+          <label for="title-input">Title</label>
+          <input type="text" name="title-input" required class="title-input">
+          </div>
+          <div class="repeat-input-wrapper">
+            
+          <label for="repeat-input">Repeat</label>
+          <div class="days-picker">
+            <button type="button" class="checked">MON</button>
+            <button type="button" class="checked">TUE</button>
+            <button type="button" class="checked">WED</button>
+            <button type="button" class="checked">THU</button>
+            <button type="button" class="checked">FRI</button>
+            <button type="button">SAT</button>
+            <button type="button">SUN</button>
+          </div>
+          </div>
+          <div class="set-reminder-input-wrapper">
+                
+          <div class="custom-checkbox"><img src="./assets/images/checked-black.svg" alt=""></div>
+          <label for="set-reminder">Set Reminder</label>
+          </div>
+
+          <div class="reminder-time-input-wrapper">
+<label for="reminder-time">Set reminder time</label>
+            <input type="time" name="reminder-time-input" class="reminder-time-input" value="12:00">
+          </div>
+
+          <div class="btn-wrapper">
+            <button type="submit" class="submit-btn">Add</button>
+            <button type="button" class="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
     <div class="main-wrapper" style="display: none;">
       <div class="navbar">
         <div class="navitem">

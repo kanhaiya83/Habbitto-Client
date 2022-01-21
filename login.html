@@ -48,7 +48,7 @@
 
             <div class="signup-link">
               <span>Don't have an account?</span>
-              <a href="/signup">Create your account</a>
+              <a href="/signup.html">Create your account</a>
             </div>
           </form>
         </div>
@@ -56,10 +56,10 @@
     </div>
 
     
-  <script>
-serverUrl = "https://habbitto-server.herokuapp.com" || "http://localhost:5000" ;
-
-    if(localStorage.getItem("auth-token")!=""){
+  <script>serverUrl= "http://localhost:5000" ;
+    serverUrl = "https://habbitto-server.herokuapp.com"  ;
+    
+   if(localStorage.getItem("auth-token")!=""){
         
         fetch(serverUrl+"/verifyuser",{
           headers: {
