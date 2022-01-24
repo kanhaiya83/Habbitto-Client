@@ -24,7 +24,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <title>Habbitto</title>
+  <script src="./assets/scripts/global.js"></script>
+  <title>Habbitto</title>
   </head>
   <body>
     <div class="loader-container">
@@ -34,7 +35,9 @@
       <div class="signup-wrapper">
         <div class="left">
             <div class="img-container">
-              <img src="http://localhost:5000/images/signup" alt="" />
+              <!-- <img src="https://habbitto-server.herokuapp.com/images/home" alt="" /> -->
+            <img src="https://res.cloudinary.com/dbgfrdoan/image/upload/v1642836187/signup_v1xaeo.png" alt="">
+
             </div>
           <div class="wave-1">
             <img src="./assets/images/WAVE-1.svg" alt="" />
@@ -46,24 +49,34 @@
         <div class="right">
           <h2 class="heading">Sign Up</h2>
           <form class="signup-form">
-            <label for="username">Username</label>
+            <div class="username-input-wrapper">
+              <label for="username">Username</label>
             <input required type="text" name="username" class="username-input" />
-            <label for="password">Password</label>
+         
+            <span class="warning username-input-warning">
+              Username should be of 4 characters or more
+            </span>   </div>
+            <div class="password-input-wrapper">
+              <label for="password">Password</label>
             <input
               required
               type="password"
               name="password"
               class="password-input"
             />
-            <span class="warning password-warning">
+            <span class="warning password-input-warning">
               Password should be of 6 characters or more
             </span>
+            </div>
+            <div class="mobile-input-wrapper">
+              
             <label for="mobileNumber">
               Mobile Number
-              <span>(if you wish to receive sms notification)</span>
+              <span>(Optional)</span>
             </label>
             <input type="tel" name="mobileNumber" class="mobile-input" />
-            <span class="warning mobile-warning">Invalid mobile number</span>
+            <span class="warning mobile-input-warning">Invalid mobile number</span>
+            </div>
 
             <button class="signup-btn" type="submit">Sign up</button>
 
@@ -75,7 +88,6 @@
         </div>
       </div>
     </div>
-    <!-- <script src="./inTelInput/intlTelInput.js"></script> -->
     <script>
       var input = document.querySelector(".mobile-input");
       let iti = window.intlTelInput(input, {
@@ -84,8 +96,7 @@
           "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.js",
       });
     </script>
- <script>serverUrl= "http://localhost:5000" ;
-  serverUrl = "https://habbitto-server.herokuapp.com" 
+ <script>
 
   if(localStorage.getItem("auth-token")!=""){
     

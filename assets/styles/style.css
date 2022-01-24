@@ -12,7 +12,104 @@
   --z-modal: 200;
   --z-navbar: 100;
   --z-loader: 300;
+  --z-alert: 400;
   --border-color: #dddddd;
+  --warning-color: #dc3545 !important;
+  --success-alert-primary:#01C952;
+  --success-alert-secondary:#78E2A9;
+  --failure-alert-primary:#FE5623;
+  --failure-alert-secondary:#F8AD92;
+}
+
+.alert-container {
+  position: absolute;
+  top: -200px;
+  width: 100%;
+  z-index: var(--z-alert);
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 600px;
+  text-align: center;
+}
+.alert-container .alert {
+  margin: 0 10px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  background-color: #f6f6f6;
+  width: 100%;
+  padding: 10px 20px;
+  box-shadow: 3px 5px 9px 0px #dddddd;
+  transition: transform 500ms ease-out;
+}
+.alert-container .alert.show {
+  transform: translateY(250px);
+}
+.alert-container .alert .icon-container {
+  border-radius: 50%;
+  padding: 3px;
+  margin-right: 10%;
+  width: fit-content;
+  border-radius: 100px;
+}
+.alert-container .alert .icon-container .img-container {
+  background-color: var(--success-alert-primary);
+  padding: 8px;
+  border-radius: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.alert-container .alert .icon-container .img-container img, .alert-container .alert .icon-container .img-container svg {
+  width: 24px;
+}
+.alert-container .alert .alert-text {
+  font-weight: 500;
+  font-family: "roboto";
+}
+.alert-container .alert .close-alert-btn {
+  position: absolute;
+  right: 20px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.alert-container .alert .close-alert-btn img {
+  width: 25px;
+}
+.alert-container .success-alert {
+  position: absolute;
+  top: 0;
+}
+.alert-container .success-alert .icon-container {
+  border: 4px solid var(--success-alert-secondary);
+}
+.alert-container .success-alert .icon-container .img-container {
+  background-color: var(--success-alert-primary);
+}
+.alert-container .success-alert .icon-container .img-container img {
+  width: 28px;
+}
+.alert-container .success-alert .alert-text {
+  color: var(--success-alert-primary);
+}
+.alert-container .failure-alert {
+  position: absolute;
+  top: 0;
+}
+.alert-container .failure-alert .icon-container {
+  border: var(--failure-alert-secondary) 4px solid;
+}
+.alert-container .failure-alert .icon-container .img-container {
+  background-color: var(--failure-alert-primary);
+  padding: 4px;
+}
+.alert-container .failure-alert .icon-container .img-container img {
+  width: 32px;
+}
+.alert-container .failure-alert .alert-text {
+  color: var(--failure-alert-primary);
 }
 
 .loader-container {
@@ -221,7 +318,7 @@
   margin-right: 16px;
 }
 .add-modal-content .btn-wrapper .cancel-btn {
-  border-color: #FF5252;
+  border-color: #ff5252;
 }
 
 @keyframes modal-bd {
@@ -480,35 +577,62 @@ body {
 }
 .login-wrapper .right .heading {
   font-family: "rockwell";
-  margin-bottom: 10px;
   font-weight: 400;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 .login-wrapper .right .login-form {
   display: flex;
   flex-direction: column;
   font-family: "roboto";
 }
+.login-wrapper .right .login-form .username-input-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+.login-wrapper .right .login-form .password-input-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
 .login-wrapper .right .login-form label {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 400;
   color: #777777;
-  margin: 20px 0 3px 1px;
+  margin: 0px 0 3px 1px;
+  display: block;
 }
 .login-wrapper .right .login-form input {
   border: 2px solid #dddddd;
   border-radius: 3px;
   padding: 10px;
+  display: block;
+  width: 100%;
+}
+.login-wrapper .right .login-form .warning {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  font-size: 0.7rem;
+  margin: 0px 0 0 3px;
+  color: var(--warning-color);
+  opacity: 0;
+  transition: opacity 300ms;
+}
+.login-wrapper .right .login-form .warning.show {
+  opacity: 1;
 }
 .login-wrapper .right .login-form a {
   text-decoration: none;
 }
 .login-wrapper .right .login-form .forgot-password {
-  margin-top: 5px;
+  position: absolute;
+  top: calc(100% + 3px);
+  width: 100%;
 }
 .login-wrapper .right .login-form .forgot-password a {
   float: right;
   color: #777777;
-  font-size: 0.875rem;
+  font-size: 0.7rem;
 }
 .login-wrapper .right .login-form .login-btn {
   margin-top: 40px;
@@ -519,9 +643,9 @@ body {
   padding: 10px;
 }
 .login-wrapper .right .login-form .signup-link {
-  font-size: 1.25rem;
+  font-size: 1rem;
   text-align: center;
-  margin-top: 16px;
+  margin-top: 24px;
 }
 .login-wrapper .right .login-form .signup-link a {
   color: #09177a;
@@ -585,38 +709,54 @@ body {
   font-family: "rockwell";
   margin-bottom: 12px;
   font-weight: 400;
+  font-size: 2rem;
 }
 .signup-wrapper .right .signup-form {
   display: flex;
   flex-direction: column;
   font-family: "roboto";
 }
-.signup-wrapper .right .signup-form label {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  color: #777777;
-  margin: 5px 0 3px 1px;
+.signup-wrapper .right .signup-form .username-input-wrapper {
+  position: relative;
+  margin-bottom: 16px;
 }
-.signup-wrapper .right .signup-form label span {
+.signup-wrapper .right .signup-form .password-input-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+.signup-wrapper .right .signup-form .mobile-input-wrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+.signup-wrapper .right .signup-form label {
+  font-size: 0.7rem;
   font-weight: 400;
+  color: #777777;
+  margin: 0px 0 3px 1px;
+  display: block;
 }
 .signup-wrapper .right .signup-form input {
   border: 2px solid #dddddd;
   border-radius: 3px;
-  padding: 7px 3px;
-}
-.signup-wrapper .right .signup-form input.show-red-border {
-  border: 2px solid #ff6e66;
+  padding: 10px;
+  display: block;
+  width: 100%;
 }
 .signup-wrapper .right .signup-form .warning {
-  font-size: 0.5rem;
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  font-size: 0.7rem;
   margin: 0px 0 0 3px;
-  color: #d0342c;
+  color: var(--warning-color);
   opacity: 0;
   transition: opacity 300ms;
 }
 .signup-wrapper .right .signup-form .warning.show {
   opacity: 1;
+}
+.signup-wrapper .right .signup-form .iti {
+  width: 100%;
 }
 .signup-wrapper .right .signup-form .mobile-input {
   width: 100%;

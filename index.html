@@ -20,6 +20,7 @@
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
     rel="stylesheet"
   />
+  <script src="./assets/scripts/global.js"></script>
     <title>Habbitto</title>
   </head>
   <body>
@@ -28,6 +29,26 @@
     <div class="loader">
     </div>
    </div>
+   <div class="alert-container">
+    <div class="success-alert alert">
+      <div class="icon-container">
+        <div class="img-container">
+          <img src="./assets/images/checked.svg" alt="">
+        </div>
+      </div>
+      <div class="alert-text">This is a success alert!!</div>
+      <button class="close-alert-btn"><img src="./assets/images/cross.svg" alt=""></button>
+    </div>
+    <div class="failure-alert alert ">
+      <div class="icon-container">
+        <div class="img-container">
+          <img src="./assets/images/cross-white.svg" alt="">
+        </div>
+      </div>
+      <div class="alert-text">This is a success alert!!</div>
+      <div class="close-alert-btn"><img src="./assets/images/cross.svg" alt=""></div>
+    </div>
+  </div>
    <div class="add-modal-backdrop">
     </div>
     <div class="add-modal">
@@ -151,7 +172,8 @@
             </div>
           </div>
           <div class="illustration-container">
-            <img src="https://habbitto-server.herokuapp.com/images/home" alt="" />
+            <!-- <img src="https://habbitto-server.herokuapp.com/images/home" alt="" /> -->
+            <img  src="https://res.cloudinary.com/dbgfrdoan/image/upload/v1642836186/home_x6h4qs.png" alt="">
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
-serverUrl= "http://localhost:5000" ;
-serverUrl = "https://habbitto-server.herokuapp.com" 
+
+
 //#region initial auth check
 
 if (localStorage.getItem("auth-token") != "") {
@@ -16,6 +16,7 @@ if (localStorage.getItem("auth-token") != "") {
 
         document.querySelector(".main-wrapper").style.display = "block";
         showLoader(false);
+        showAlert("success","Logged in as "+hobbyData.username)
       });
     } else {
       window.location.href = "/login.html";
@@ -228,3 +229,29 @@ else{
 
 }
 }
+//alert 
+
+function showAlert(type,msg){
+  if(type=="success"){
+    document.querySelector(".success-alert .alert-text").innerHTML=msg
+    document.querySelector(".success-alert").classList.add("show")
+    setTimeout(()=>{
+      document.querySelector(".success-alert").classList.remove("show")
+    },4000)
+  }
+  else{
+    
+    document.querySelector(".failure-alert .alert-text").innerHTML=msg
+    document.querySelector(".failure-alert").classList.add("show")
+    setTimeout(()=>{
+      document.querySelector(".failure-alert").classList.remove("show")
+    },4000)
+  }
+}
+
+document.querySelectorAll(".alert .close-alert-btn").forEach((e)=>{
+  e.addEventListener("click",()=>{
+    document.querySelector(".success-alert").classList.remove("show")
+    document.querySelector(".failure-alert").classList.remove("show")
+  })
+})

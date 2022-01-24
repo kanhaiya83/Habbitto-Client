@@ -1,27 +1,56 @@
-serverUrl= "http://localhost:5000" ;
-serverUrl = "https://habbitto-server.herokuapp.com" 
 
 const signupForm = document.querySelector(".signup-form");
+
+
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const userData = {
+  const formData = {
     username: e.target.username.value,
     password: e.target.password.value,
+    mobileNumber:""
   };
-  console.log(userData);
+  if (iti && iti.getNumber()!="") {
+      formData.mobileNumber = iti.getNumber();
+  }
+  if(validateFormData(formData)){
+    signupUser(formData)
+    }
   
-  fetch(serverUrl+"/signup", {
+});
+
+
+function validateFormData(data){
+  isValidData=true
+  hideAllInputWarning()
+  if(data.username.length < 4){
+    showInputWarning("username")
+    isValidData=false
+  }
+  if(data.password.length < 6){
+    showInputWarning("password")
+    isValidData=false
+
+  }
+  if(data.mobileNumber != "" && iti && !iti.isValidNumber()){
+    showInputWarning("mobile")
+    isValidData=false
+  }
+  return isValidData
+}
+
+function signupUser(data){
+  fetch(serverUrl + "/signup", {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(userData),
+    body: JSON.stringify(data),
   }).then((res) => {
     if (res.status == 200) {
       res.json().then((response) => {
-          console.log(response);
-          
+        console.log(response);
+
         localStorage.setItem("auth-token", response.authToken);
         window.location.href = "/index.html";
       });
@@ -29,7 +58,27 @@ signupForm.addEventListener("submit", (e) => {
       alert("Invalid credentials");
     }
   });
-});
+}
+
+function showInputWarning(key){
+  if(key=="username"){
+  document.querySelector(".username-input-warning").classList.add("show")
+
+  }
+  else if(key=="password"){
+  document.querySelector(".password-input-warning").classList.add("show")
+
+  }
+  else if(key=="mobile"){
+  document.querySelector(".mobile-input-warning").classList.add("show")
+
+  }
+}
+function hideAllInputWarning(){
+  document.querySelector(".username-input-warning").classList.remove("show")
+  document.querySelector(".password-input-warning").classList.remove("show")
+  document.querySelector(".mobile-input-warning").classList.remove("show")
+}
 
 // const nameWarning = document.querySelector(".name-warning");
 //         const passwordWarning = document.querySelector(".password-warning");
@@ -70,34 +119,7 @@ signupForm.addEventListener("submit", (e) => {
 //             mobileWarning.classList.remove("show");
 
 //             mobileInput.classList.remove("show-red-border");
-//         } 
+//         }
 //         return isFormValid
 //       }
-//       //send the request to server to create the user
-//       async function signUpUser(data) {
-//         let response=await fetch("http://localhost:5000/signup",{
-//           method:"POST",
-//           headers:{
-//             'Content-type':"application/json"
-//           },
-//           body:JSON.stringify(data)
-//         })
-//         res=await response.json()
-//         console.log(res)
-//       }
-//       let signupForm = document.querySelector(".signup-form");
-//       signupForm.addEventListener("submit", (e) => {
-//         e.preventDefault();
-//         const userData = {
-//           name: e.target.name.value.trim(),
-//           password: e.target.password.value,
-//           email: e.target.email.value.trim(),
-//           mobileNumber: e.target.mobileNumber.value,
-//         };
-//         if (validateInputs(userData)) {
-//           //send the data to server
-
-//           signUpUser(userData);
-//         }
-//       });
-    
+//      

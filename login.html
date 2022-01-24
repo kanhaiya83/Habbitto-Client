@@ -10,7 +10,8 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="./assets/styles/style.css" />
-    <title>Habbitto</title>
+  <script src="./assets/scripts/global.js"></script>
+  <title>Habbitto</title>
     
   </head>
 
@@ -20,6 +21,8 @@
     <div class="loader">
     </div>
     </div>
+
+    
     <div class="login-container" style="display: none;">
       <div class="login-wrapper">
         <div class="left">
@@ -30,18 +33,32 @@
             <img src="./assets/images/WAVE-2.svg" alt="" />
           </div>
           <div class="img-container">
-            <img src="https://habbitto-server.herokuapp.com/images/login" alt="" />
+            <!-- <img src="https://habbitto-server.herokuapp.com/images/login" alt="" />
+             -->            <img src="https://res.cloudinary.com/dbgfrdoan/image/upload/v1642836186/login_hrini4.png" alt="">
+
           </div>
         </div>
         <div class="right">
           <h2 class="heading">Sign In</h2>
           <form class="login-form">
-            <label for="username">Username</label>
-            <input type="text" name="username" class="email-input" />
+            <div class="username-input-wrapper">
+              
+            <label for="username-input">Username</label>
+            <input type="text" name="username" class="username-input" />
+            <span class="warning username-input-warning">
+              Username should be of 4 characters or more
+            </span>
+          </div>
+            <div class="password-input-wrapper">
+                
             <label for="password">Password</label>
             <input type="password" name="password" class="password-input" />
             <div class="forgot-password">
               <a href="">Forgot Password?</a>
+            </div>
+             <span class="warning password-input-warning">
+              Password should be of 6 characters or more
+            </span>
             </div>
 
             <button class="login-btn" type="submit">Login</button>
@@ -56,8 +73,7 @@
     </div>
 
     
-  <script>serverUrl= "http://localhost:5000" ;
-    serverUrl = "https://habbitto-server.herokuapp.com"  ;
+  <script> ;
     
    if(localStorage.getItem("auth-token")!=""){
         
