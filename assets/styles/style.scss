@@ -216,11 +216,10 @@ border-radius: 100px;
     color: #777777;
     font-family: "roboto";
     display: block;
+    margin-bottom: 4px;
   }
   .title-input-wrapper {
-    label {
-      margin-bottom: 4px;
-    }
+    
     .title-input {
       display: block;
       border: 2px solid #dddddd;
@@ -232,19 +231,16 @@ border-radius: 100px;
   }
   .repeat-input-wrapper {
     margin-bottom: 32px;
-    label {
-      margin-bottom: 4px;
-    }
+    
     .days-picker {
       display: flex;
       width: 100%;
-      border-radius: 3px;
       overflow: hidden;
 
       button {
         background-color: transparent;
         color: black;
-        padding: 10px 0;
+        padding: 12px 0;
         width: 50px;
         text-align: center;
         font-family: "roboto";
@@ -266,48 +262,69 @@ border-radius: 100px;
         }
       }
     }
-  }
-  .set-reminder-input-wrapper {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    .custom-checkbox {
-      border: 2px solid var(--border-color);
-      width: 25px;
-      height: 25px;
-      border-radius: 3px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-right: 10px;
-      &:hover {
-        cursor: pointer;
-      }
-      &.checked {
-        img {
-          display: block;
+
+    .frequency-input-wrapper{
+      position: relative;
+      select{
+        font-size: 1rem;
+        margin-top: 16px;
+        border: var(--border-color) 2px solid;
+        border-radius: 7px;
+        width: 10rem;
+        padding: 10px 10px;
+        position: relative;
+
+        &:focus{
+          outline: none;
         }
+        
       }
-      img {
-        width: 20px;
-        display: none;
+      
+      
+    }
+    
+  }
+  .reminder-input-wrapper {
+    .wrapper{
+      display: flex;
+    }
+    .reminders-list{
+      display: flex;
+      align-items: center;
+          .reminder{
+            display: flex;
+            align-items: center;
+            border: var(--border-color) 2px solid;
+            width: fit-content;
+            padding: 7px 10px;
+            border-radius: 5px;
+            .reminder-time{
+              counter-reset: #343434;
+            }
+            .delete-reminder-btn{
+              margin-left: 5px;
+              display: flex;
+              width: 1.5rem;
+              border: none;
+              background-color: transparent;
+              height: fit-content;
+              svg{
+                width: 100%;
+              }
+            }
+          }
+    }
+    .add-reminder-btn{
+      width: 2rem;
+      margin-left: 10px;
+      border: none;
+      background-color: transparent;
+      img,svg{
+        width: 100%;
       }
     }
   }
-  .reminder-time-input-wrapper {
-    display: none;
-    &.show {
-      display: block;
-    }
-    label {
-      margin-bottom: 5px;
-      font-weight: 300;
-    }
-    input {
-      border: 2px solid var(--border-color);
-      padding: 10px 3px;
-    }
-  }
+ 
   .btn-wrapper {
     margin-top: 50px;
     button {
@@ -498,28 +515,32 @@ body {
   border: 2px solid #dbdbdb;
 
   font-family: "lato";
-  padding: 5px 40px;
+  padding: 15px 40px;
   border-radius: 160px;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   &.completed {
-    border: 2px solid #00c990;
-    .icon {
-      background-color: #00c990;
-      border: none;
+    border: 3px solid var(--success-alert-secondary);
+    .habit-checkbox {
+      img,svg{
+        display: block!important;
+      }
     }
   }
-  .icon {
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80px;
-    height: 80px;
-    border: 2px solid #9f9f9f;
-    img {
+  .habit-checkbox{
+    border: var(--border-color) 2px solid;
+    border-radius: 3px;
+    width: 2rem;
+    height: 2rem;
+    position: relative;
+    img,svg{
+      display: none;
+      width: 110%;
+      position: absolute;
+      bottom: 2px;
+      left: 5px;
     }
   }
   .wrapper {
@@ -540,12 +561,21 @@ body {
       }
     }
   }
-  .time span {
+  .reminder-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .bell-icon{
+      width: 30px;
+      svg,img{
+        width: 100%;
+      }
+    }
+    span {
     color: #606060;
-    font-size: 0.875rem;
-    font-weight: bold;
+    font-size: 0.7rem;
     display: block;
-  }
+  }}
 }
 .login-container {
   height: 100%;

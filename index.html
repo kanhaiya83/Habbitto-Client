@@ -49,9 +49,9 @@
       <div class="close-alert-btn"><img src="./assets/images/cross.svg" alt=""></div>
     </div>
   </div>
-   <div class="add-modal-backdrop">
+   <div class="add-modal-backdrop ">
     </div>
-    <div class="add-modal">
+    <div class="add-modal ">
       <button class="close-modal-btn"><img src="./assets/images/cross.svg" alt=""></button>
       <div class="add-modal-content">
         <h3 class="heading">Add a Habit</h3>
@@ -73,17 +73,30 @@
             <button type="button">SAT</button>
             <button type="button">SUN</button>
           </div>
+          <div class="frequency-input-wrapper">
+                  
+                  <select name="frequency-input" id="frequency-input">
+                    <option value="1">Once a day</option>
+                    <option value="2">Twice a day</option>
+                    <option value="3">Thrice a day</option>
+                  </select>
+                  
           </div>
-          <div class="set-reminder-input-wrapper">
-                
-          <div class="custom-checkbox"><img src="./assets/images/checked-black.svg" alt=""></div>
-          <label for="set-reminder">Set Reminder</label>
+          </div>
+          <div class="reminder-input-wrapper">
+          <label for="set-reminder">Remind me at:</label>
+          <div class="wrapper">
+            <div class="reminders-list">
+              <div class="reminder">
+                <div class="reminder-time">09:00 AM</div>
+                <button class="delete-reminder-btn"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><g fill="none" stroke="#757575" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M11.25 4.75l-6.5 6.5m0-6.5l6.5 6.5"/></g></svg></button>
+              </div>
+            </div>
+            <button class="add-reminder-btn"><img src="./assets/images/add-icon.svg" alt=""></button>
+          </div>
           </div>
 
-          <div class="reminder-time-input-wrapper">
-<label for="reminder-time">Set reminder time</label>
-            <input type="time" name="reminder-time-input" class="reminder-time-input" value="12:00">
-          </div>
+        
 
           <div class="btn-wrapper">
             <button type="submit" class="submit-btn">Add</button>
@@ -139,9 +152,9 @@
               </button>
             </div>
             <div class="habits-list">
-              <!-- <div class="habit completed">
-                <div class="icon">
-                  <img src="./assets/images/checked.svg" alt="" />
+              <!-- <div class="habit ">
+                <div class="habit-checkbox">
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"preserveAspectRatio="xMidYMid meet" viewBox="0 0 64 64"><path d="M56.734 5.081c-8.437 7.302-15.575 14.253-22.11 23.322c-2.882 4-6.087 8.708-8.182 13.153c-1.196 2.357-3.352 6.04-4.087 9.581c-4.02-3.74-8.338-7.985-12.756-11.31c-3.149-2.369-12.219 2.461-8.527 5.239c6.617 4.977 12.12 11.176 18.556 16.375c2.692 2.172 8.658-2.545 10.06-4.524c4.602-6.52 5.231-14.49 8.585-21.602c5.121-10.877 14.203-19.812 23.17-27.571c5.941-5.541-.195-6.563-4.7-2.663" fill="#01C952"/></svg>
                 </div>
                 <div class="wrapper">
                   <div class="title"><span>Learn two new words.</span></div>
@@ -150,22 +163,10 @@
                     <span>Repeat Everyday</span>
                   </div>
                 </div>
-                <div class="time">
-                  <span>05:30 AM</span>
-                </div>
-              </div>
-              <div class="habit">
-                <div class="icon">
-                  <img src="./assets/images/waiting.svg" alt="" />
-                </div>
-                <div class="wrapper">
-                  <div class="title"><span>Learn two new words.</span></div>
-                  <div class="repeat-info">
-                    <img src="./assets/images/repeat.svg" alt="" />
-                    <span>Repeat Everyday</span>
+                <div class="reminder-time">
+                  <div class="bell-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet" viewBox="0 0 448 512"><path d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29c0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29c-6 6.45-8.66 14.16-8.61 21.71c.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32c.05-7.55-2.61-15.27-8.61-21.71z" fill="#636363"/></svg>
                   </div>
-                </div>
-                <div class="time">
                   <span>05:30 AM</span>
                 </div>
               </div> -->

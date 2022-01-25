@@ -33,21 +33,24 @@ function populateData(habitsArr) {
     if (habitObj.isCompleted) {
       habitEle.classList.add("completed");
     }
-    let habitInnerHtml = `<div class="icon">
-            <img src="./assets/images/${
-              habitObj.isCompleted ? "checked" : "waiting"
-            }.svg" alt="" />
-          </div>
-          <div class="wrapper">
-            <div class="title"><span>${habitObj.title}</span></div>
-            <div class="repeat-info">
-              <img src="./assets/images/repeat.svg" alt="" />
-              <span>Repeat Everyday</span>
-            </div>
-          </div>
-          <div class="time">
-            <span>05:30 AM</span>
-          </div>`;
+    let habitInnerHtml = `
+    <div class="habit-checkbox">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"preserveAspectRatio="xMidYMid meet" viewBox="0 0 64 64"><path d="M56.734 5.081c-8.437 7.302-15.575 14.253-22.11 23.322c-2.882 4-6.087 8.708-8.182 13.153c-1.196 2.357-3.352 6.04-4.087 9.581c-4.02-3.74-8.338-7.985-12.756-11.31c-3.149-2.369-12.219 2.461-8.527 5.239c6.617 4.977 12.12 11.176 18.556 16.375c2.692 2.172 8.658-2.545 10.06-4.524c4.602-6.52 5.231-14.49 8.585-21.602c5.121-10.877 14.203-19.812 23.17-27.571c5.941-5.541-.195-6.563-4.7-2.663" fill="#01C952"/></svg>
+    </div>
+    <div class="wrapper">
+      <div class="title"><span>${habitObj.title}</span></div>
+      <div class="repeat-info">
+        <img src="./assets/images/repeat.svg" alt="" />
+        <span>Repeat Everyday</span>
+      </div>
+    </div>
+    <div class="reminder-time">
+      <div class="bell-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet" viewBox="0 0 448 512"><path d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29c0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29c-6 6.45-8.66 14.16-8.61 21.71c.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32c.05-7.55-2.61-15.27-8.61-21.71z" fill="#636363"/></svg>
+      </div>
+      <span>05:30 AM</span>
+    </div>
+`;
     habitEle.innerHTML = habitInnerHtml;
     document.querySelector(".habits-list").appendChild(habitEle);
   });
@@ -86,16 +89,7 @@ function resetAddHabitForm(){
     else{
       e.classList.remove("checked")
     }
-  })
-  //set reminder checkbox
-  customCheckbox.classList.remove("checked")
-  //reminder time input
-  document.querySelector(".reminder-time-input").value="12:00"
-  //hide reminder time input
-  document
-    .querySelector(".reminder-time-input-wrapper")
-    .classList.remove("show");
-}
+  })}
 function hideModal() {
   resetAddHabitForm()
   addModalBackdrop.classList.remove("show");
@@ -115,14 +109,9 @@ cancelModalBtn.addEventListener("click", () => {
   hideModal();
 });
 
-//custom checkbox in add add habit modal
-const customCheckbox = document.querySelector(".custom-checkbox");
-customCheckbox.addEventListener("click", () => {
-  customCheckbox.classList.toggle("checked");
-  document
-    .querySelector(".reminder-time-input-wrapper")
-    .classList.toggle("show");
-});
+
+
+
 //days picker
 const daysPickerBtns = document.querySelectorAll(".days-picker button");
 daysPickerBtns.forEach((btn) => {
@@ -130,6 +119,9 @@ daysPickerBtns.forEach((btn) => {
     btn.classList.toggle("checked");
   });
 });
+
+
+
 //add habit form handling
 
 const addHabitForm = document.querySelector(".add-habit-form");
@@ -159,17 +151,7 @@ function getAddFormData(e) {
       data.repeatDays[i] = 1;
     }
   });
-  //is reminder set
-  if (customCheckbox.classList.contains("checked")) {
-    data.setReminder = true;
-    //reminder time
-    inputTime = document.querySelector("input.reminder-time-input").value.split(":");
-    let currDate = new Date();
-    currDate.setHours(inputTime[0]);
-    currDate.setMinutes(inputTime[1]);
-    currDate.setSeconds("0");
-    data.reminderTime = currDate.getTime();
-  }
+  
   return data;
 }
 
@@ -179,11 +161,9 @@ function showValidationWarning(type){
 
   const titleWarning= document.querySelector("title-warning")
   const passwordWarning= document.querySelector("title-warning")
-  const reminderTimeWarning= document.querySelector("title-warning")
 
   titleWarning.classList.remove("show")
   passwordWarning.classList.remove("show")
-  reminderTimeWarning.classList.remove("show")
 
   if(type==="title"){
    titleWarning.classList.add("show")

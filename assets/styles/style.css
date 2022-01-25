@@ -213,8 +213,6 @@
   color: #777777;
   font-family: "roboto";
   display: block;
-}
-.add-modal-content .title-input-wrapper label {
   margin-bottom: 4px;
 }
 .add-modal-content .title-input-wrapper .title-input {
@@ -228,19 +226,15 @@
 .add-modal-content .repeat-input-wrapper {
   margin-bottom: 32px;
 }
-.add-modal-content .repeat-input-wrapper label {
-  margin-bottom: 4px;
-}
 .add-modal-content .repeat-input-wrapper .days-picker {
   display: flex;
   width: 100%;
-  border-radius: 3px;
   overflow: hidden;
 }
 .add-modal-content .repeat-input-wrapper .days-picker button {
   background-color: transparent;
   color: black;
-  padding: 10px 0;
+  padding: 12px 0;
   width: 50px;
   text-align: center;
   font-family: "roboto";
@@ -261,44 +255,58 @@
   background-color: var(--primary);
   border: 1px solid var(--primary);
 }
-.add-modal-content .set-reminder-input-wrapper {
+.add-modal-content .repeat-input-wrapper .frequency-input-wrapper {
+  position: relative;
+}
+.add-modal-content .repeat-input-wrapper .frequency-input-wrapper select {
+  font-size: 1rem;
+  margin-top: 16px;
+  border: var(--border-color) 2px solid;
+  border-radius: 7px;
+  width: 10rem;
+  padding: 10px 10px;
+  position: relative;
+}
+.add-modal-content .repeat-input-wrapper .frequency-input-wrapper select:focus {
+  outline: none;
+}
+.add-modal-content .reminder-input-wrapper .wrapper {
+  display: flex;
+}
+.add-modal-content .reminder-input-wrapper .reminders-list {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
 }
-.add-modal-content .set-reminder-input-wrapper .custom-checkbox {
-  border: 2px solid var(--border-color);
-  width: 25px;
-  height: 25px;
-  border-radius: 3px;
+.add-modal-content .reminder-input-wrapper .reminders-list .reminder {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-right: 10px;
+  border: var(--border-color) 2px solid;
+  width: fit-content;
+  padding: 7px 10px;
+  border-radius: 5px;
 }
-.add-modal-content .set-reminder-input-wrapper .custom-checkbox:hover {
-  cursor: pointer;
+.add-modal-content .reminder-input-wrapper .reminders-list .reminder .reminder-time {
+  counter-reset: #343434;
 }
-.add-modal-content .set-reminder-input-wrapper .custom-checkbox.checked img {
-  display: block;
+.add-modal-content .reminder-input-wrapper .reminders-list .reminder .delete-reminder-btn {
+  margin-left: 5px;
+  display: flex;
+  width: 1.5rem;
+  border: none;
+  background-color: transparent;
+  height: fit-content;
 }
-.add-modal-content .set-reminder-input-wrapper .custom-checkbox img {
-  width: 20px;
-  display: none;
+.add-modal-content .reminder-input-wrapper .reminders-list .reminder .delete-reminder-btn svg {
+  width: 100%;
 }
-.add-modal-content .reminder-time-input-wrapper {
-  display: none;
+.add-modal-content .reminder-input-wrapper .add-reminder-btn {
+  width: 2rem;
+  margin-left: 10px;
+  border: none;
+  background-color: transparent;
 }
-.add-modal-content .reminder-time-input-wrapper.show {
-  display: block;
-}
-.add-modal-content .reminder-time-input-wrapper label {
-  margin-bottom: 5px;
-  font-weight: 300;
-}
-.add-modal-content .reminder-time-input-wrapper input {
-  border: 2px solid var(--border-color);
-  padding: 10px 3px;
+.add-modal-content .reminder-input-wrapper .add-reminder-btn img, .add-modal-content .reminder-input-wrapper .add-reminder-btn svg {
+  width: 100%;
 }
 .add-modal-content .btn-wrapper {
   margin-top: 50px;
@@ -482,7 +490,7 @@ body {
 .habit {
   border: 2px solid #dbdbdb;
   font-family: "lato";
-  padding: 5px 40px;
+  padding: 15px 40px;
   border-radius: 160px;
   margin-bottom: 20px;
   display: flex;
@@ -490,20 +498,24 @@ body {
   align-items: center;
 }
 .habit.completed {
-  border: 2px solid #00c990;
+  border: 3px solid var(--success-alert-secondary);
 }
-.habit.completed .icon {
-  background-color: #00c990;
-  border: none;
+.habit.completed .habit-checkbox img, .habit.completed .habit-checkbox svg {
+  display: block !important;
 }
-.habit .icon {
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-  height: 80px;
-  border: 2px solid #9f9f9f;
+.habit .habit-checkbox {
+  border: var(--border-color) 2px solid;
+  border-radius: 3px;
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+}
+.habit .habit-checkbox img, .habit .habit-checkbox svg {
+  display: none;
+  width: 110%;
+  position: absolute;
+  bottom: 2px;
+  left: 5px;
 }
 .habit .wrapper .title span {
   color: #143162;
@@ -521,10 +533,20 @@ body {
   color: #878787;
   margin-left: 4px;
 }
-.habit .time span {
+.habit .reminder-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.habit .reminder-time .bell-icon {
+  width: 30px;
+}
+.habit .reminder-time .bell-icon svg, .habit .reminder-time .bell-icon img {
+  width: 100%;
+}
+.habit .reminder-time span {
   color: #606060;
-  font-size: 0.875rem;
-  font-weight: bold;
+  font-size: 0.7rem;
   display: block;
 }
 
