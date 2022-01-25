@@ -1,5 +1,6 @@
-
+//#region
 const signupForm = document.querySelector(".signup-form");
+
 
 
 signupForm.addEventListener("submit", (e) => {
@@ -17,6 +18,7 @@ signupForm.addEventListener("submit", (e) => {
     }
   
 });
+
 
 
 function validateFormData(data){
@@ -39,6 +41,7 @@ function validateFormData(data){
 }
 
 function signupUser(data){
+  showLoader(true)
   fetch(serverUrl + "/signup", {
     method: "POST",
     headers: {
@@ -55,7 +58,17 @@ function signupUser(data){
         window.location.href = "/index.html";
       });
     } else {
-      alert("Invalid credentials");
+      res.json().then((data)=>{
+        if(data.success ===false && data.message){
+          showLoader(false)
+          showAlert("failure",data.message)
+        }
+        else{
+          showLoader(false)
+          showAlert("failure","Some error occurred!Please try again.")
+        }
+      })
+      
     }
   });
 }
@@ -79,47 +92,48 @@ function hideAllInputWarning(){
   document.querySelector(".password-input-warning").classList.remove("show")
   document.querySelector(".mobile-input-warning").classList.remove("show")
 }
+//#endregion
 
-// const nameWarning = document.querySelector(".name-warning");
-//         const passwordWarning = document.querySelector(".password-warning");
-//         const mobileWarning = document.querySelector(".mobile-warning");
-//       const nameInput = document.querySelector(".name-input");
-//       const passwordInput = document.querySelector(".password-input");
-//       const mobileInput = document.querySelector(".mobile-input");
-//       //validate the input and show the warnings
-//       function validateInputs({ name, password, email, mobileNumber }) {
-//           let isFormValid=true
-//           //validate name and show warnings according to them
-//         if (name.length < 4) {
-//           nameWarning.classList.add("show");
-//           nameInput.classList.add("show-red-border");
-//           isFormValid= false;
-//         }
-//         else{
-//             nameWarning.classList.remove("show");
-//             nameInput.classList.remove("show-red-border");
+//loader function 
 
-//         }
-//         if (password.length < 6) {
-//           passwordWarning.classList.add("show");
-//           passwordInput.classList.add("show-red-border");
-//           isFormValid= false;
-//         }
-//         else{
-//             passwordWarning.classList.remove("show");
+function showLoader(show=true){
+  if(show){
+    document.querySelector(".loader-container").classList.add("show")
+  
+  }
+  else{
+    document.querySelector(".loader-container").classList.remove("show")
+  
+  }
+  }
 
-//             passwordInput.classList.remove("show-red-border");
-//         }
-//         if (!iti.isValidNumber()) {
-//           mobileWarning.classList.add("show");
-//           mobileInput.classList.add("show-red-border");
-//           isFormValid= false;
-//         }
-//         else{
-//             mobileWarning.classList.remove("show");
+  
+//alerts
+const successAlert= document.querySelector(".success-alert")
+const failureAlert= document.querySelector(".failure-alert")
+const successAlertText= document.querySelector(".success-alert .alert-text")
+const failureAlertText= document.querySelector(".failure-alert .alert-text")
+function showAlert(type,msg){
+  if(type=="success"){
+    successAlertText.innerHTML=msg
+   successAlert.classList.add("show")
+    setTimeout(()=>{
+     successAlert.classList.remove("show")
+    },4000)
+  }
+  else{
+    
+    failureAlertText.innerHTML=msg
+    failureAlert.classList.add("show")
+    setTimeout(()=>{
+      failureAlert.classList.remove("show")
+    },4000)
+  }
+}
 
-//             mobileInput.classList.remove("show-red-border");
-//         }
-//         return isFormValid
-//       }
-//      
+document.querySelectorAll(".alert .close-alert-btn").forEach((e)=>{
+  e.addEventListener("click",()=>{
+   successAlert.classList.remove("show")
+    failureAlert.classList.remove("show")
+  })
+})

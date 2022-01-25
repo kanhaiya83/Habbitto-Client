@@ -16,13 +16,32 @@
   </head>
 
   <body>
-    <div class="loader-container">
+    <div class="loader-container show">
       
     <div class="loader">
     </div>
     </div>
 
-    
+    <div class="alert-container">
+      <div class="success-alert alert">
+        <div class="icon-container">
+          <div class="img-container">
+            <img src="./assets/images/checked.svg" alt="">
+          </div>
+        </div>
+        <div class="alert-text">This is a success alert!!</div>
+        <button class="close-alert-btn"><img src="./assets/images/cross.svg" alt=""></button>
+      </div>
+      <div class="failure-alert alert ">
+        <div class="icon-container">
+          <div class="img-container">
+            <img src="./assets/images/cross-white.svg" alt="">
+          </div>
+        </div>
+        <div class="alert-text">This is a success alert!!</div>
+        <div class="close-alert-btn"><img src="./assets/images/cross.svg" alt=""></div>
+      </div>
+    </div>
     <div class="login-container" style="display: none;">
       <div class="login-wrapper">
         <div class="left">
@@ -88,13 +107,13 @@
             window.location.href="index.html"
           }
           else{
-            document.querySelector(".loader-container").style.display="none"
+          document.querySelector(".loader-container").classList.remove("show")
             document.querySelector(".login-container").style.display="block"
           }
         })
     }
           else{
-            document.querySelector(".loader-container").style.display="none"
+          document.querySelector(".loader-container").classList.remove("show")
             document.querySelector(".login-container").style.display="block"
           }
   </script>

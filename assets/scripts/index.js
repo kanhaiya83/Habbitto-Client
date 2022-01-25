@@ -97,6 +97,7 @@ function resetAddHabitForm(){
     .classList.remove("show");
 }
 function hideModal() {
+  resetAddHabitForm()
   addModalBackdrop.classList.remove("show");
   addModal.classList.remove("show");
 }
@@ -135,10 +136,11 @@ const addHabitForm = document.querySelector(".add-habit-form");
 
 addHabitForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  showLoader(true)  //hide loader on response and data population
-  hideModal()
   const data = getAddFormData(e);
+
   sendAddHabitData(data)
+  
+  hideModal()
 });
 
 function getAddFormData(e) {
@@ -199,6 +201,7 @@ isValid=false
 }
 
 function sendAddHabitData(data) {
+  showLoader(true)
   fetch(serverUrl + "/addhabit", {
     method: "POST",
     headers: {
@@ -230,28 +233,31 @@ else{
 }
 }
 //alert 
-
+const successAlert= document.querySelector(".success-alert")
+const failureAlert= document.querySelector(".failure-alert")
+const successAlertText= document.querySelector(".success-alert .alert-text")
+const failureAlertText= document.querySelector(".failure-alert .alert-text")
 function showAlert(type,msg){
   if(type=="success"){
-    document.querySelector(".success-alert .alert-text").innerHTML=msg
-    document.querySelector(".success-alert").classList.add("show")
+    successAlertText.innerHTML=msg
+   successAlert.classList.add("show")
     setTimeout(()=>{
-      document.querySelector(".success-alert").classList.remove("show")
+     successAlert.classList.remove("show")
     },4000)
   }
   else{
     
-    document.querySelector(".failure-alert .alert-text").innerHTML=msg
-    document.querySelector(".failure-alert").classList.add("show")
+    failureAlertText.innerHTML=msg
+    failureAlert.classList.add("show")
     setTimeout(()=>{
-      document.querySelector(".failure-alert").classList.remove("show")
+      failureAlert.classList.remove("show")
     },4000)
   }
 }
 
 document.querySelectorAll(".alert .close-alert-btn").forEach((e)=>{
   e.addEventListener("click",()=>{
-    document.querySelector(".success-alert").classList.remove("show")
-    document.querySelector(".failure-alert").classList.remove("show")
+   successAlert.classList.remove("show")
+    failureAlert.classList.remove("show")
   })
 })
