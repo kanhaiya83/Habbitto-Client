@@ -59,7 +59,7 @@
           <div class="title-input-wrapper">
             
           <label for="title-input">Title</label>
-          <input type="text" name="title-input" required class="title-input">
+          <input type="text" name="title-input" required autofocus class="title-input">
           </div>
           <div class="repeat-input-wrapper">
             
@@ -73,27 +73,10 @@
             <button type="button">SAT</button>
             <button type="button">SUN</button>
           </div>
-          <div class="frequency-input-wrapper">
-                  
-                  <select name="frequency-input" id="frequency-input">
-                    <option value="1">Once a day</option>
-                    <option value="2">Twice a day</option>
-                    <option value="3">Thrice a day</option>
-                  </select>
-                  
-          </div>
           </div>
           <div class="reminder-input-wrapper">
           <label for="set-reminder">Remind me at:</label>
-          <div class="wrapper">
-            <div class="reminders-list">
-              <div class="reminder">
-                <div class="reminder-time">09:00 AM</div>
-                <button class="delete-reminder-btn"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"><g fill="none" stroke="#757575" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M11.25 4.75l-6.5 6.5m0-6.5l6.5 6.5"/></g></svg></button>
-              </div>
-            </div>
-            <button class="add-reminder-btn"><img src="./assets/images/add-icon.svg" alt=""></button>
-          </div>
+          <input type="time" name="reminder-time-input" class="reminder-time-input" value="09:00">
           </div>
 
         
@@ -169,8 +152,16 @@
                   </div>
                   <span>05:30 AM</span>
                 </div>
+                 <div class="habit-options">
+              <button class="delete-habit-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img"preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20"><path d="M10.001 7.8a2.2 2.2 0 1 0 0 4.402A2.2 2.2 0 0 0 10 7.8zm0-2.6A2.2 2.2 0 1 0 9.999.8a2.2 2.2 0 0 0 .002 4.4zm0 9.6a2.2 2.2 0 1 0 0 4.402a2.2 2.2 0 0 0 0-4.402z" fill="#8e8e8ek"/></svg>
+              </button>
+              
+            </div>
               </div> -->
             </div>
+            
+
           </div>
           <div class="illustration-container">
             <!-- <img src="https://habbitto-server.herokuapp.com/images/home" alt="" /> -->

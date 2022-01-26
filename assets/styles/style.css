@@ -15,10 +15,10 @@
   --z-alert: 400;
   --border-color: #dddddd;
   --warning-color: #dc3545 !important;
-  --success-alert-primary:#01C952;
-  --success-alert-secondary:#78E2A9;
-  --failure-alert-primary:#FE5623;
-  --failure-alert-secondary:#F8AD92;
+  --success-alert-primary: #01c952;
+  --success-alert-secondary: #78e2a9;
+  --failure-alert-primary: #fe5623;
+  --failure-alert-secondary: #f8ad92;
 }
 
 .alert-container {
@@ -61,7 +61,8 @@
   align-items: center;
   justify-content: center;
 }
-.alert-container .alert .icon-container .img-container img, .alert-container .alert .icon-container .img-container svg {
+.alert-container .alert .icon-container .img-container img,
+.alert-container .alert .icon-container .img-container svg {
   width: 24px;
 }
 .alert-container .alert .alert-text {
@@ -215,16 +216,18 @@
   display: block;
   margin-bottom: 4px;
 }
+.add-modal-content .title-input-wrapper {
+  margin-bottom: 24px;
+}
 .add-modal-content .title-input-wrapper .title-input {
   display: block;
   border: 2px solid #dddddd;
   border-radius: 3px;
   padding: 10px 3px;
   width: 100%;
-  margin-bottom: 32px;
 }
 .add-modal-content .repeat-input-wrapper {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 .add-modal-content .repeat-input-wrapper .days-picker {
   display: flex;
@@ -255,58 +258,10 @@
   background-color: var(--primary);
   border: 1px solid var(--primary);
 }
-.add-modal-content .repeat-input-wrapper .frequency-input-wrapper {
-  position: relative;
-}
-.add-modal-content .repeat-input-wrapper .frequency-input-wrapper select {
-  font-size: 1rem;
-  margin-top: 16px;
-  border: var(--border-color) 2px solid;
-  border-radius: 7px;
-  width: 10rem;
-  padding: 10px 10px;
-  position: relative;
-}
-.add-modal-content .repeat-input-wrapper .frequency-input-wrapper select:focus {
-  outline: none;
-}
-.add-modal-content .reminder-input-wrapper .wrapper {
-  display: flex;
-}
-.add-modal-content .reminder-input-wrapper .reminders-list {
-  display: flex;
-  align-items: center;
-}
-.add-modal-content .reminder-input-wrapper .reminders-list .reminder {
-  display: flex;
-  align-items: center;
-  border: var(--border-color) 2px solid;
-  width: fit-content;
-  padding: 7px 10px;
-  border-radius: 5px;
-}
-.add-modal-content .reminder-input-wrapper .reminders-list .reminder .reminder-time {
-  counter-reset: #343434;
-}
-.add-modal-content .reminder-input-wrapper .reminders-list .reminder .delete-reminder-btn {
-  margin-left: 5px;
-  display: flex;
-  width: 1.5rem;
-  border: none;
-  background-color: transparent;
-  height: fit-content;
-}
-.add-modal-content .reminder-input-wrapper .reminders-list .reminder .delete-reminder-btn svg {
-  width: 100%;
-}
-.add-modal-content .reminder-input-wrapper .add-reminder-btn {
-  width: 2rem;
-  margin-left: 10px;
-  border: none;
-  background-color: transparent;
-}
-.add-modal-content .reminder-input-wrapper .add-reminder-btn img, .add-modal-content .reminder-input-wrapper .add-reminder-btn svg {
-  width: 100%;
+.add-modal-content .reminder-input-wrapper .reminder-time-input {
+  border: 2px solid var(--border-color);
+  border-radius: 3px;
+  padding: 10px 15px;
 }
 .add-modal-content .btn-wrapper {
   margin-top: 50px;
@@ -488,20 +443,35 @@ body {
 }
 
 .habit {
-  border: 2px solid #dbdbdb;
+  border: 3px solid #dbdbdb;
+  position: relative;
   font-family: "lato";
   padding: 15px 40px;
   border-radius: 160px;
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  user-select: none;
 }
 .habit.completed {
   border: 3px solid var(--success-alert-secondary);
 }
-.habit.completed .habit-checkbox img, .habit.completed .habit-checkbox svg {
+.habit.completed .habit-checkbox img,
+.habit.completed .habit-checkbox svg {
   display: block !important;
+}
+.habit.completed .wrapper .title span {
+  text-decoration: line-through;
+  color: #909090;
+}
+.habit.completed .wrapper .repeat-info span {
+  color: #c7c7c7;
+}
+.habit.completed .reminder-time svg path {
+  fill: #b4b4b4;
+}
+.habit.completed .reminder-time span {
+  color: #b4b4b4;
 }
 .habit .habit-checkbox {
   border: var(--border-color) 2px solid;
@@ -510,12 +480,19 @@ body {
   height: 2rem;
   position: relative;
 }
-.habit .habit-checkbox img, .habit .habit-checkbox svg {
+.habit .habit-checkbox:hover {
+  cursor: pointer;
+}
+.habit .habit-checkbox img,
+.habit .habit-checkbox svg {
   display: none;
   width: 110%;
   position: absolute;
   bottom: 2px;
   left: 5px;
+}
+.habit .wrapper {
+  margin-left: 10%;
 }
 .habit .wrapper .title span {
   color: #143162;
@@ -525,7 +502,7 @@ body {
 .habit .wrapper .repeat-info {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .habit .wrapper .repeat-info span {
   font-size: 0.8rem;
@@ -534,20 +511,37 @@ body {
   margin-left: 4px;
 }
 .habit .reminder-time {
+  margin-left: auto;
+  margin-right: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.habit .reminder-time:focus {
+  margin-left: 0;
+}
 .habit .reminder-time .bell-icon {
   width: 30px;
 }
-.habit .reminder-time .bell-icon svg, .habit .reminder-time .bell-icon img {
+.habit .reminder-time .bell-icon svg,
+.habit .reminder-time .bell-icon img {
   width: 100%;
 }
 .habit .reminder-time span {
   color: #606060;
   font-size: 0.7rem;
   display: block;
+}
+.habit .delete-habit-btn {
+  position: absolute;
+  right: 0.3rem;
+  width: 2rem;
+  background-color: transparent;
+  border: none;
+  margin-left: 1.5rem;
+}
+.habit .delete-habit-btn svg {
+  width: 1.3rem;
 }
 
 .login-container {

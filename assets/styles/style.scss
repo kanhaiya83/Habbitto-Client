@@ -14,13 +14,13 @@
   --z-alert: 400;
   --border-color: #dddddd;
   --warning-color: #dc3545 !important;
-  --success-alert-primary:#01C952;
-  --success-alert-secondary:#78E2A9;
-  --failure-alert-primary:#FE5623;
-  --failure-alert-secondary:#F8AD92;
+  --success-alert-primary: #01c952;
+  --success-alert-secondary: #78e2a9;
+  --failure-alert-primary: #fe5623;
+  --failure-alert-secondary: #f8ad92;
 }
 //alerts
-.alert-container{
+.alert-container {
   position: absolute;
   top: -200px;
   width: 100%;
@@ -29,7 +29,7 @@
   transform: translateX(-50%);
   max-width: 600px;
   text-align: center;
-  .alert{
+  .alert {
     margin: 0 10px;
     display: flex;
     position: relative;
@@ -39,16 +39,16 @@
     padding: 10px 20px;
     box-shadow: 3px 5px 9px 0px #787878;
     transition: transform 500ms ease-out;
-    &.show{
+    &.show {
       transform: translateY(250px);
     }
-    .icon-container{
+    .icon-container {
       border-radius: 50%;
       padding: 3px;
       margin-right: 10%;
       width: fit-content;
-border-radius: 100px;
-      .img-container{
+      border-radius: 100px;
+      .img-container {
         background-color: var(--success-alert-primary);
         padding: 8px;
         border-radius: 50%;
@@ -56,64 +56,60 @@ border-radius: 100px;
         display: flex;
         align-items: center;
         justify-content: center;
-        img,svg{
+        img,
+        svg {
           width: 24px;
         }
       }
     }
-    .alert-text{
+    .alert-text {
       font-weight: 500;
       font-family: "roboto";
     }
-    .close-alert-btn{
+    .close-alert-btn {
       position: absolute;
       right: 20px;
       border: none;
       background-color: transparent;
       cursor: pointer;
-      img{
+      img {
         width: 25px;
       }
     }
   }
-  .success-alert{
+  .success-alert {
     position: absolute;
     top: 0;
-    .icon-container{
-      
+    .icon-container {
       border: 4px solid var(--success-alert-secondary);
-      .img-container{
+      .img-container {
         background-color: var(--success-alert-primary);
-        img{
+        img {
           width: 28px;
         }
       }
     }
-    .alert-text{
+    .alert-text {
       color: var(--success-alert-primary);
-
     }
   }
-  .failure-alert{
+  .failure-alert {
     position: absolute;
     top: 0;
-    .icon-container{
-      
-     border: var(--failure-alert-secondary) 4px solid;
-      .img-container{
+    .icon-container {
+      border: var(--failure-alert-secondary) 4px solid;
+      .img-container {
         background-color: var(--failure-alert-primary);
         padding: 4px;
-        img{
+        img {
           width: 32px;
         }
       }
     }
-    .alert-text{
+    .alert-text {
       color: var(--failure-alert-primary);
-
     }
   }
-
 }
 //loader
 .loader-container {
@@ -219,19 +215,18 @@ border-radius: 100px;
     margin-bottom: 4px;
   }
   .title-input-wrapper {
-    
+    margin-bottom: 24px;
     .title-input {
       display: block;
       border: 2px solid #dddddd;
       border-radius: 3px;
       padding: 10px 3px;
       width: 100%;
-      margin-bottom: 32px;
     }
   }
   .repeat-input-wrapper {
-    margin-bottom: 32px;
-    
+    margin-bottom: 24px;
+
     .days-picker {
       display: flex;
       width: 100%;
@@ -262,69 +257,15 @@ border-radius: 100px;
         }
       }
     }
-
-    .frequency-input-wrapper{
-      position: relative;
-      select{
-        font-size: 1rem;
-        margin-top: 16px;
-        border: var(--border-color) 2px solid;
-        border-radius: 7px;
-        width: 10rem;
-        padding: 10px 10px;
-        position: relative;
-
-        &:focus{
-          outline: none;
-        }
-        
-      }
-      
-      
-    }
-    
   }
   .reminder-input-wrapper {
-    .wrapper{
-      display: flex;
-    }
-    .reminders-list{
-      display: flex;
-      align-items: center;
-          .reminder{
-            display: flex;
-            align-items: center;
-            border: var(--border-color) 2px solid;
-            width: fit-content;
-            padding: 7px 10px;
-            border-radius: 5px;
-            .reminder-time{
-              counter-reset: #343434;
-            }
-            .delete-reminder-btn{
-              margin-left: 5px;
-              display: flex;
-              width: 1.5rem;
-              border: none;
-              background-color: transparent;
-              height: fit-content;
-              svg{
-                width: 100%;
-              }
-            }
-          }
-    }
-    .add-reminder-btn{
-      width: 2rem;
-      margin-left: 10px;
-      border: none;
-      background-color: transparent;
-      img,svg{
-        width: 100%;
-      }
+    .reminder-time-input {
+      border: 2px solid var(--border-color);
+      border-radius: 3px;
+      padding: 10px 15px;
     }
   }
- 
+
   .btn-wrapper {
     margin-top: 50px;
     button {
@@ -512,30 +453,52 @@ body {
   }
 }
 .habit {
-  border: 2px solid #dbdbdb;
-
+  border: 3px solid #dbdbdb;
+position: relative;
   font-family: "lato";
   padding: 15px 40px;
   border-radius: 160px;
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  user-select: none;
   &.completed {
     border: 3px solid var(--success-alert-secondary);
     .habit-checkbox {
-      img,svg{
-        display: block!important;
+      img,
+      svg {
+        display: block !important;
+      }
+    }
+    .wrapper {
+      .title span {
+        text-decoration: line-through;
+        color: #909090;
+      }
+      .repeat-info span {
+        color: #c7c7c7;
+      }
+    }
+    .reminder-time {
+      svg path {
+        fill: #b4b4b4;
+      }
+      span {
+        color: #b4b4b4;
       }
     }
   }
-  .habit-checkbox{
+  .habit-checkbox {
     border: var(--border-color) 2px solid;
     border-radius: 3px;
     width: 2rem;
     height: 2rem;
     position: relative;
-    img,svg{
+    &:hover {
+      cursor: pointer;
+    }
+    img,
+    svg {
       display: none;
       width: 110%;
       position: absolute;
@@ -544,6 +507,7 @@ body {
     }
   }
   .wrapper {
+    margin-left: 10%;
     .title span {
       color: #143162;
       font-size: 1.5rem;
@@ -552,7 +516,7 @@ body {
     .repeat-info {
       display: flex;
       align-items: center;
-      margin-top: 10px;
+      margin-top: 5px;
       span {
         font-size: 0.8rem;
         font-weight: 400;
@@ -562,20 +526,43 @@ body {
     }
   }
   .reminder-time {
+    &:focus{
+      margin-left: 0;
+    }
+    margin-left: auto;
+    margin-right: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    .bell-icon{
+    .bell-icon {
       width: 30px;
-      svg,img{
+      svg,
+      img {
         width: 100%;
       }
     }
     span {
-    color: #606060;
-    font-size: 0.7rem;
-    display: block;
-  }}
+      color: #606060;
+      font-size: 0.7rem;
+      display: block;
+    }
+  }
+
+    
+    .delete-habit-btn{
+      position: absolute;
+    right: 0.3rem;
+   
+      width: 2rem;
+      background-color: transparent;
+      border: none;
+      margin-left: 1.5rem;
+      svg{
+        width: 1.3rem;
+      }
+
+    
+  }
 }
 .login-container {
   height: 100%;
@@ -628,7 +615,7 @@ body {
     .heading {
       font-family: "rockwell";
       font-weight: 400;
-      font-size:2rem ;
+      font-size: 2rem;
       margin-bottom: 20px;
     }
     .login-form {
@@ -674,7 +661,8 @@ body {
         text-decoration: none;
       }
       .forgot-password {
-        position: absolute;top:calc(100% + 3px);
+        position: absolute;
+        top: calc(100% + 3px);
         width: 100%;
         a {
           float: right;
@@ -786,7 +774,6 @@ body {
         color: #777777;
         margin: 0px 0 3px 1px;
         display: block;
-    
       }
       input {
         border: 2px solid #dddddd;
