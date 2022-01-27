@@ -93,9 +93,13 @@ function populateData(habitsArr) {
 `;
     habitEle.innerHTML = habitInnerHtml;
     document.querySelector(".habits-list").appendChild(habitEle);
+    habitEle.querySelector(".delete-habit-btn").addEventListener("click",()=>{
+        deleteHabit(habitEle.dataset.mongoId,habitEle)
+    })
+    habitEle.querySelector(".habit-checkbox").addEventListener("click",()=>{
+        toggleHabitCompleted(habitEle.dataset.mongoId,habitEle)
+    })
   });
-  addListenersToHabitCheckboxes()
-  addListenersToHabitDeleteBtns()
 }
 
 //#endregion
@@ -231,7 +235,8 @@ function sendAddHabitData(data) {
       return r.json();
     })
     .then((data) => {
-      populateData([data]);
+      console.log(data);
+      populateData([data.savedHabit]);
       showLoader(false);
     });
 }
@@ -305,16 +310,6 @@ function toggleHabitCompleted(id, checkboxParent) {
 
     });
 }
-
-function addListenersToHabitCheckboxes(){
-  document.querySelectorAll(".habit-checkbox").forEach((checkbox) => {
-    checkbox.addEventListener("click", () => {
-      const checkboxParent = checkbox.parentElement;
-      const id = checkboxParent.dataset.mongoId;
-      toggleHabitCompleted(id, checkboxParent);
-    });
-  });
-}
 //delete habit
 
 function deleteHabit(id,habitEle){
@@ -339,15 +334,4 @@ function deleteHabit(id,habitEle){
       showLoader(false)
     });
   
-}
-function addListenersToHabitDeleteBtns(){
- 
-  document.querySelectorAll(".delete-habit-btn").forEach((btn) => {
-  const habitItemEle=btn.closest(".habit")
-  const id=habitItemEle.dataset.mongoId
-    btn.addEventListener("click", () => {
-    console.log("click");  
-      deleteHabit(id,habitItemEle);
-    });
-  });
 }
