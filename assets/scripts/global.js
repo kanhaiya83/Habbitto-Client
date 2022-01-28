@@ -1,1 +1,1 @@
-serverUrl = "https://habbitto-server.herokuapp.com"  ||"http://localhost:5000"
+serverUrl = "https://habbitto.herokuapp.com"  ||"http://localhost:5000"
